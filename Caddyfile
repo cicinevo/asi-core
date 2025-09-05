@@ -1,22 +1,4 @@
-evocoms.net {
-    encode zstd gzip
-
-    # Forward ONLY /api/* to the backend — do NOT strip the prefix
-    @api path /api/*
-    handle @api {
-        reverse_proxy localhost:8080
-    }
-
-    # Safety: if /command arrives without /api, rewrite to /api/command
-    @barecmd path /command
-    handle @barecmd {
-        uri replace /command /api/command
-        reverse_proxy localhost:8080
-    }
-
-    # Everything else serves the static dashboard
-    handle {
-        root * /var/www/asi
-        file_server
-    }
+evocoms.net, www.evocoms.net {
+  encode zstd gzip
+  reverse_proxy asi-core-api:8080
 }
