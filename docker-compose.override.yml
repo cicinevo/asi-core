@@ -1,0 +1,5 @@
+services:
+  api:
+    volumes:
+      - ./boot-asi.sh:/boot-asi.sh:ro
+    entrypoint: ["sh","-lc","/boot-asi.sh"]

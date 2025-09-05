@@ -1,0 +1,20 @@
+# Secrets
+.env
+.env.*
+secrets/
+*.pem
+*.key
+*.crt
+
+# Build/Cache
+__pycache__/
+*.pyc
+node_modules/
+dist/
+build/
+
+# Logs & backups
+*.log
+*.bak
+*.tmp
+*.swp

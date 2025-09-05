@@ -1,0 +1,13 @@
+services:
+  api:
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health', timeout=2); print('ok')\""]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
+  caddy:
+    depends_on:
+      api:
+        condition: service_healthy
