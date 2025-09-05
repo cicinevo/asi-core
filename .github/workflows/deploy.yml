@@ -14,12 +14,12 @@ jobs:
           host: ${{ secrets.DROPLET_HOST }}
           username: ${{ secrets.DROPLET_USER }}
           key: ${{ secrets.DROPLET_SSH_KEY }}
+          fingerprint: ${{ secrets.DROPLET_HOST_FINGERPRINT }}
+          port: 22
           script: |
             set -e
             cd /home/ccleno/asi-core
-            # Ensure remote exists and pull latest from main
             git remote -v || git remote add origin git@github.com:cicinevo/asi-core.git
             git fetch origin main
             git reset --hard origin/main
-            # Rebuild & restart services
             docker compose up -d --build
